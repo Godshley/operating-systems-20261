@@ -2,7 +2,6 @@
 
 ## Estudiante
 Bryan Giraldo Quintero
-CC: 1152457551
 
 
 ---
