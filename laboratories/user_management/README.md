@@ -104,6 +104,5 @@ Opciones disponibles:
 
 * Sistema ejecutado en contenedor Podman con Alpine Linux
 * Uso de herramientas del sistema (`useradd`, `chage`, `passwd`)
-* Limitaciones de BusyBox en autenticación (SUID/PAM)
 
 ---
