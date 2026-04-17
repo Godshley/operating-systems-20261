@@ -89,7 +89,7 @@ Opciones disponibles:
 
 ## Políticas de seguridad
 
-* Contraseña por defecto: `Temp123*`
+* Contraseña por defecto: `Abc123*`
 * Cambio obligatorio en primer login
 * Expiración de contraseña a 30 días
 * Advertencia 10 días antes del vencimiento
