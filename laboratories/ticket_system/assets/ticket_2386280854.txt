@@ -1,0 +1,4 @@
+Radicado: 2386280854
+Identificacion: 987654321
+Correo: prueba@correo.com
+Tipo de reclamacion: Soporte
