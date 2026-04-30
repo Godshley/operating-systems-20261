@@ -1,0 +1,207 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: concurrencia
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d concurrencia"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  init-db:
+    image: postgres:16
+    container_name: init_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: admin123
+    volumes:
+      - ./db:/sql
+    command: >
+      sh -c "psql -h postgres_db -U admin -d concurrencia -f /sql/init.sql &&
+             psql -h postgres_db -U admin -d concurrencia -f /sql/seed.sql"
+    restart: "no"
+
+  worker1:
+    build: ./worker
+    container_name: worker_1
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_1
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker2:
+    build: ./worker
+    container_name: worker_2
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_2
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker3:
+    build: ./worker
+    container_name: worker_3
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_3
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker4:
+    build: ./worker
+    container_name: worker_4
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_4
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker5:
+    build: ./worker
+    container_name: worker_5
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_5
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker6:
+    build: ./worker
+    container_name: worker_6
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_6
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker7:
+    build: ./worker
+    container_name: worker_7
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_7
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker8:
+    build: ./worker
+    container_name: worker_8
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_8
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker9:
+    build: ./worker
+    container_name: worker_9
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_9
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+  worker10:
+    build: ./worker
+    container_name: worker_10
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+    environment:
+      WORKER_ID: worker_10
+      DB_HOST: postgres_db
+      DB_NAME: concurrencia
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      SHARED_LOG: /shared/activity.log
+    volumes:
+      - shared_files:/shared
+    restart: "no"
+
+volumes:
+  postgres_data:
+  shared_files:

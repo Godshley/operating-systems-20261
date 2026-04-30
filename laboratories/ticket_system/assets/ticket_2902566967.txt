@@ -1,4 +1,0 @@
-Radicado: 2902566967
-Identificacion: 123456789
-Correo: correo@correo.com
-Tipo de reclamacion: Factura

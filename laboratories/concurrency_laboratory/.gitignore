@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Docker volumes (datos locales)
+postgres_data/
+shared_files/
+
+# Variables de entorno (si las usaras)
+.env
+
+# Logs locales
+*.log
